@@ -70,7 +70,7 @@ use_driver(Name) ->
 %%
 
 exec(Type, Conn, Version, UpDown) ->
-    Query = eql:get_query(Type, UpDown),
+    {ok, Query} = eql:get_query(Type, UpDown),
     case if_ok(exec_transaction(Conn, Query)) of
         skip ->
             {Version, skip};
